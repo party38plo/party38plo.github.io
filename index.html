@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="经典老片 - 汇集世界经典电影、怀旧影视、黑白电影及经典老歌资源。提供高清修复版影片欣赏、电影鉴赏指南及经典电影百科。">
+    <meta name="keywords" content="经典老片,经典电影,怀旧影视,黑白电影,老电影推荐">
+    <title>经典老片-怀旧影视与黑白电影鉴赏指南</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #d35400;
+            --bg-color: #fdfbf7;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-color: #e0e0e0;
+            --spacing-unit: 1rem;
+            --container-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: #ecf0f1;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: #bdc3c7;
+        }
+
+        .search-box {
+            display: flex;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 0.3rem 0.8rem;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            width: 150px;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://picsum.photos/seed/cinema/1600/900') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-tag {
+            background-color: var(--accent-color);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .section-more {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Grid Layouts */
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Movie Card */
+        .movie-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-image {
+            position: relative;
+            padding-top: 140%; /* Aspect ratio */
+            overflow: hidden;
+        }
+
+        .card-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+
+        .movie-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 2px;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .card-desc {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 0.8rem;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .rating {
+            color: #f1c40f;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        .btn-sm:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Feature Section (Two Columns) */
+        .feature-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .feature-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .feature-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* List Style */
+        .list-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        .list-item:hover {
+            border-color: var(--accent-color);
+        }
+
+        .list-rank {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ecf0f1;
+            margin-right: 1rem;
+            width: 40px;
+            text-align: center;
+        }
+
+        .list-info {
+            flex-grow: 1;
+        }
+
+        .list-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .list-info span {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .list-action {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: #bdc3c7;
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .grid-4 { grid-template-columns: repeat(3, 1fr); }
+            .hero h1 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-inner { flex-direction: column; gap: 1rem; }
+            nav ul { gap: 1rem; font-size: 0.9rem; }
+            .search-box { display: none; } /* Simplified for mobile */
+            .grid-4, .grid-3, .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .feature-layout { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .hero { height: 400px; }
+            .hero h1 { font-size: 2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+            .list-item { flex-direction: column; text-align: center; }
+            .list-rank { margin-bottom: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <i>◆</i> <span>影史回响</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">首页</a></li>
+                    <li><a href="#">黑白经典</a></li>
+                    <li><a href="#">华语老片</a></li>
+                    <li><a href="#">欧美神作</a></li>
+                    <li><a href="#">鉴赏指南</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="搜索经典老片...">
+                <button>🔍</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-content">
+                <span class="hero-tag">时光的胶片</span>
+                <h1>重温光影记忆，<br>探索永恒的经典</h1>
+                <p>这里是经典老片的避风港。从黑白电影的默片时代到黄金年代的辉煌，我们汇集了跨越世纪的银幕杰作，为您呈现高清修复版与深度鉴赏。</p>
+                <a href="#featured" class="btn">开始探索</a>
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section id="featured">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">本周推荐</h2>
+                    <a href="#" class="section-more">查看全部 &rarr;</a>
+                </div>
+                <div class="grid-4">
+                    <!-- Card 1 -->
+                    <article class="movie-card">
+                        <div class="card-image">
+                            <span class="card-badge">黑白</span>
+                            <img src="https://picsum.photos/seed/casablanca/400/560" alt="卡萨布兰卡海报">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">卡萨布兰卡</h3>
+                            <div class="card-meta">
+                                <span>1942</span>
+                                <span>1h 42m</span>
+                            </div>
+                            <p class="card-desc">好莱坞黄金时代的巅峰之作，里克与伊尔莎之间跨越战争与道德的复杂情感纠葛。</p>
+                            <div class="card-footer">
+                                <span class="rating">★★★★★ 9.6</span>
+                                <a href="#" class="btn-sm">观看</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="movie-card">
+                        <div class="card-image">
+                            <span class="card-badge">华语</span>
+                            <img src="https://picsum.photos/seed/lateautumn/400/560" alt="秋天的童话海报">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">秋天的童话</h3>
+                            <div class="card-meta">
+                                <span>1987</span>
+                                <span>1h 40m</span>
+                            </div>
+                            <p class="card-desc">张婉婷执导，钟楚红与周润发主演，一段跨越重洋的纯美爱情故事，充满怀旧气息。</p>
+                            <div class="card-footer">
+                                <span class="rating">★★★★☆ 9.1</span>
+                                <a href="#" class="btn-sm">观看</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="movie-card">
+                        <div class="card-image">
+                            <span class="card-badge">神作</span>
+                            <img src="https://picsum.photos/seed/2001/400/560" alt="2001太空漫游海报">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">2001太空漫游</h3>
+                            <div class="card-meta">
+                                <span>1968</span>
+                                <span>2h 29m</span>
+                            </div>
+                            <p class="card-desc">斯坦利·库布里克执导的科幻史诗，探索人类进化与外星文明的哲学命题。</p>
+                            <div class="card-footer">
+                                <span class="rating">★★★★★ 9.4</span>
+                                <a href="#" class="btn-sm">观看</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="movie-card">
+                        <div class="card-image">
+                            <span class="card-badge">剧情</span>
+                            <img src="https://picsum.photos/seed/laurel/400/560" alt="一夜风流海报">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">一夜风流</h3>
+                            <div class="card-meta">
+                                <span>1934</span>
+                                <span>1h 22m</span>
+                            </div>
+                            <p class="card-desc">第一部获得奥斯卡最佳影片的喜剧片，展现了战时社会背景下的爱情喜剧。</p>
+                            <div class="card-footer">
+                                <span class="rating">★★★★☆ 9.0</span>
+                                <a href="#" class="btn-sm">观看</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories & Intro -->
+        <section style="background-color: #fff;">
+            <div class="container feature-layout">
+                <div class="feature-text">
+                    <span style="color: var(--accent-color); font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">为什么重温经典？</span>
+                    <h3>经典老片是电影的灵魂</h3>
+                    <p>在这个快节奏的流媒体时代，经典老片依然拥有不可替代的艺术价值。它们不仅记录了历史，更探讨了人性、社会与永恒的主题。通过观看这些经过时间考验的作品，我们能够更深刻地理解电影艺术的发展脉络。</p>
+                    <ul class="feature-list">
+                        <li>丰富的叙事技巧与镜头语言</li>
+                        <li>超越时代的表演艺术</li>
+                        <li>电影工业发展的历史见证</li>
+                        <li>独特的时代美学与怀旧情感</li>
+                    </ul>
+                </div>
+                <div class="feature-image">
+                    <img src="https://picsum.photos/seed/theatre/800/600" alt="老式电影院">
+                </div>
+            </div>
+        </section>
+
+        <!-- Top Lists -->
+        <section>
+            <div class="container">
+                <div class="grid-2">
+                    <!-- Top 10 List -->
+                    <div>
+                        <div class="section-header" style="border:none; padding:0; margin-bottom:1rem;">
+                            <h2 class="section-title" style="font-size:1.4rem;">影史百大 Top 10</h2>
+                        </div>
+                        <div class="list-group">
+                            <div class="list-item">
+                                <div class="list-rank">01</div>
+                                <div class="list-info">
+                                    <h4>教父</h4>
+                                    <span>美国 | 1972 | 犯罪剧情</span>
+                                </div>
+                                <a href="#" class="list-action">详情 &rarr;</a>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-rank">02</div>
+                                <div class="list-info">
+                                    <h4>教父2</h4>
+                                    <span>美国 | 1974 | 犯罪剧情</span>
+                                </div>
+                                <a href="#" class="list-action">详情 &rarr;</a>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-rank">03</div>
+                                <div class="list-info">
+                                    <h4>肖申克的救赎</h4>
+                                    <span>美国 | 1994 | 剧情</span>
+                                </div>
+                                <a href="#" class="list-action">详情 &rarr;</a>
+                            </div>
+                            <div class="list-item">
+                                <div class="list-rank">04</div>
+                                <div class="list-info">
+                                    <h4>教父3</h4>
+                                    <span>美国 | 1990 | 犯罪剧情</span>
+                                </div>
+                                <a href="#" class="list-action">详情 &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Genres -->
+                    <div>
+                        <div class="section-header" style="border:none; padding:0; margin-bottom:1rem;">
+                            <h2 class="section-title" style="font-size:1.4rem;">分类浏览</h2>
+                        </div>
+                        <div class="grid-2" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <a href="#" class="movie-card" style="height: 100%;">
+                                <div class="card-image" style="padding-top: 100%;">
+                                    <img src="https://picsum.photos/seed/noir/400/400" alt="黑色电影">
+                                </div>
+                                <div class="card-content" style="padding: 1rem;">
+                                    <h4 class="card-title" style="font-size:1rem;">黑色电影</h4>
+                                    <p class="card-desc" style="font-size:0.8rem;">悬疑、犯罪与孤独的视觉美学。</p>
+                                </div>
+                            </a>
+                            <a href="#" class="movie-card" style="height: 100%;">
+                                <div class="card-image" style="padding-top: 100%;">
+                                    <img src="https://picsum.photos/seed/musical/400/400" alt="音乐歌舞片">
+                                </div>
+                                <div class="card-content" style="padding: 1rem;">
+                                    <h4 class="card-title" style="font-size:1rem;">音乐歌舞片</h4>
+                                    <p class="card-desc" style="font-size:0.8rem;">黄金年代的旋律与节奏。</p>
+                                </div>
+                            </a>
+                            <a href="#" class="movie-card" style="height: 100%;">
+                                <div class="card-image" style="padding-top: 100%;">
+                                    <img src="https://picsum.photos/seed/western/400/400" alt="西部片">
+                                </div>
+                                <div class="card-content" style="padding: 1rem;">
+                                    <h4 class="card-title" style="font-size:1rem;">西部片</h4>
+                                    <p class="card-desc" style="font-size:0.8rem;">荒野、牛仔与个人主义。</p>
+                                </div>
+                            </a>
+                            <a href="#" class="movie-card" style="height: 100%;">
+                                <div class="card-image" style="padding-top: 100%;">
+                                    <img src="https://picsum.photos/seed/animation/400/400" alt="动画短片">
+                                </div>
+                                <div class="card-content" style="padding: 1rem;">
+                                    <h4 class="card-title" style="font-size:1rem;">动画短片</h4>
+                                    <p class="card-desc" style="font-size:0.8rem;">早期的实验动画与经典手绘。</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Info / FAQ -->
+        <section style="background-color: #f8f9fa;">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">观影指南与常见问题</h2>
+                </div>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <details style="margin-bottom: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color); padding: 0.5rem 0;">什么是“经典老片”？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">通常指在影史具有重要地位、影响深远且制作年代较早的电影作品。它们在叙事、表演、摄影或技术革新上具有开创性意义，至今仍被广泛研究和欣赏。</p>
+                    </details>
+                    <details style="margin-bottom: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color); padding: 0.5rem 0;">这些老片画质如何？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">我们提供的资源均经过数字修复处理，尽可能去除了噪点和划痕，提升了清晰度和色彩饱和度，以适应现代屏幕观看体验。</p>
+                    </details>
+                    <details style="margin-bottom: 1rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">
+                        <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color); padding: 0.5rem 0;">如何开始欣赏黑白电影？</summary>
+                        <p style="margin-top: 0.5rem; color: var(--text-secondary);">建议从《公民凯恩》、《卡萨布兰卡》等叙事结构成熟、知名度高的作品入手。黑白电影更能突出光影对比和演员的微表情，需要静下心来感受其独特的艺术张力。</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <i>◆</i> <span style="color:#fff;">影史回响</span>
+                    </div>
+                    <p style="font-size: 0.9rem; opacity: 0.8;">
+                        致力于推广电影艺术，保存人类文化遗产。在这里，每一帧画面都值得被铭记。
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>栏目导航</h4>
+                    <ul>
+                        <li><a href="#">黑白经典</a></li>
+                        <li><a href="#">华语老片</a></li>
+                        <li><a href="#">欧美神作</a></li>
+                        <li><a href="#">日本电影</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>帮助中心</h4>
+                    <ul>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">联系合作</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <p style="font-size: 0.85rem; opacity: 0.8;">订阅电影资讯与修复进展</p>
+                    <div style="margin-top: 0.5rem;">
+                        <input type="email" placeholder="您的邮箱" style="padding: 0.5rem; border: none; border-radius: 4px; width: 100%; outline: none;">
+                        <button style="margin-top: 0.5rem; width: 100%; padding: 0.5rem; background: var(--accent-color); color: #fff; border: none; border-radius: 4px; cursor: pointer;">订阅</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 影史回响. All rights reserved. 仅供学习交流使用，请支持正版影视。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+                      </html>
