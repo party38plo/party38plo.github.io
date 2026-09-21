@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="驱动精灵官网提供专业的硬件驱动下载、系统维护、硬件检测服务。一键更新显卡、声卡、网卡等驱动程序，解决设备无法识别、蓝屏等问题。">
+    <meta name="keywords" content="驱动精灵, 驱动下载, 硬件驱动, 系统维护, 驱动更新">
+    <title>驱动精灵-专业驱动下载与系统维护工具</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-light: #f8f9fa;
+            --text-main: #333;
+            --text-light: #666;
+            --border-color: #e1e4e8;
+            --card-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            font-size: 15px;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .header-actions .btn-download {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .download-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: var(--radius);
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-large {
+            background: #fff;
+            color: var(--accent-color);
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-block;
+        }
+
+        /* Main Layout */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Section: Features */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .feature-card p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Section: Software Categories */
+        .category-section {
+            margin-top: 60px;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-item {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .category-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+        }
+
+        .category-item h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .category-item span {
+            font-size: 12px;
+            color: var(--text-light);
+            background: #f0f2f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Section: FAQ */
+        .faq-section {
+            margin-top: 60px;
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            color: var(--text-light);
+            font-size: 15px;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: #ccc;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 0 15px;
+            }
+            
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .download-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-large {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <span>驱动精灵</span>
+                DriverGenius
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#">驱动下载</a></li>
+                    <li><a href="#">硬件检测</a></li>
+                    <li><a href="#">系统维护</a></li>
+                    <li><a href="#">企业版</a></li>
+                    <li><a href="#">帮助中心</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="#" class="btn-download">立即下载</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>智能硬件驱动，一键解决设备故障</h1>
+            <p>超过 500 万款驱动程序，自动识别硬件型号，安全、快速、稳定。</p>
+            <div class="download-box">
+                <div>
+                    <h3>驱动精灵 V9.2.0</h3>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 5px;">支持 Windows 10/11 / 7 / 8.1</p>
+                </div>
+                <a href="#" class="btn-large">免费下载客户端</a>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        
+        <!-- 核心功能 -->
+        <section class="features">
+            <div class="section-title">
+                <h2>核心功能</h2>
+                <p>全方位的电脑硬件管理与维护解决方案</p>
+            </div>
+            <div class="features-grid">
+                <article class="feature-card">
+                    <span class="feature-icon">🔍</span>
+                    <h3>硬件检测</h3>
+                    <p>一键扫描电脑硬件信息，精准识别显卡、声卡、网卡、主板等所有设备型号，查看详细参数。</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3>驱动更新</h3>
+                    <p>海量驱动库，智能比对系统与硬件版本。自动安装最新驱动，提升硬件性能，修复兼容性问题。</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon">💾</span>
+                    <h3>备份还原</h3>
+                    <p>一键备份当前驱动程序。系统崩溃或重装系统时，可快速还原至备份状态，省时省力。</p>
+                </article>
+                <article class="feature-card">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>系统优化</h3>
+                    <p>提供系统垃圾清理、启动项管理、服务优化等功能，清理冗余文件，提升系统运行流畅度。</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 常见驱动分类 -->
+        <section class="category-section">
+            <div class="section-title">
+                <h2>热门驱动分类</h2>
+                <p>覆盖主流硬件品牌，精准匹配您的设备需求</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">
+                    <h4>显卡驱动</h4>
+                    <span>NVIDIA / AMD / Intel</span>
+                </div>
+                <div class="category-item">
+                    <h4>声卡驱动</h4>
+                    <span>Realtek / Creative</span>
+                </div>
+                <div class="category-item">
+                    <h4>网卡驱动</h4>
+                    <span>Intel / Realtek / Broadcom</span>
+                </div>
+                <div class="category-item">
+                    <h4>笔记本驱动</h4>
+                    <span>联想 / 华硕 / 戴尔 / 惠普</span>
+                </div>
+                <div class="category-item">
+                    <h4>打印机驱动</h4>
+                    <span>HP / Canon / Epson</span>
+                </div>
+                <div class="category-item">
+                    <h4>输入设备</h4>
+                    <span>鼠标 / 键盘 / 摄像头</span>
+                </div>
+                <div class="category-item">
+                    <h4>主板芯片组</h4>
+                    <span>Intel / AMD / VIA</span>
+                </div>
+                <div class="category-item">
+                    <h4>无线网卡</h4>
+                    <span>Wi-Fi / 蓝牙模块</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 常见问题 FAQ -->
+        <section class="faq-section">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+                <p>关于驱动精灵使用与下载的常见疑问</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">驱动精灵下载的驱动是官方原版吗？</div>
+                <div class="faq-answer">是的，驱动精灵收录的驱动均来自硬件厂商官方渠道，确保驱动程序的来源安全、纯净，无捆绑软件。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">安装驱动后电脑变慢了怎么办？</div>
+                <div class="faq-answer">部分旧版驱动可能存在兼容性问题。建议进入驱动精灵的“驱动管理”功能，将驱动回滚至上一个稳定版本，或等待厂商发布新的兼容驱动。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">如何使用驱动精灵备份驱动？</div>
+                <div class="faq-answer">打开驱动精灵，点击“驱动管理”或“驱动备份”，选择需要备份的驱动程序，点击“备份”按钮，驱动文件将自动保存到本地指定文件夹。</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">驱动精灵支持哪些操作系统？</div>
+                <div class="faq-answer">驱动精灵支持 Windows 10、Windows 11、Windows 7、Windows 8.1 等主流操作系统，同时支持 32 位和 64 位系统。</div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>关于驱动精灵</h4>
+                <p style="font-size: 13px; line-height: 1.8; color: #999;">
+                    驱动精灵致力于为用户提供便捷、安全的驱动下载与管理服务。我们拥有庞大的驱动数据库，能够智能匹配硬件型号，解决设备无法识别、运行缓慢等问题。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>产品服务</h4>
+                <ul>
+                    <li><a href="#">驱动下载</a></li>
+                    <li><a href="#">硬件检测</a></li>
+                    <li><a href="#">驱动备份</a></li>
+                    <li><a href="#">系统维护</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>支持与帮助</h4>
+                <ul>
+                    <li><a href="#">使用教程</a></li>
+                    <li><a href="#">常见问题</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">意见反馈</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <p style="font-size: 13px; color: #999;">
+                    获取最新驱动资讯与软件动态。<br>
+                    官方微信公众号：驱动精灵
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 驱动精灵. All Rights Reserved. 本网站为演示页面设计。</p>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的 FAQ 手风琴交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                item.querySelector('.faq-question').addEventListener('click', function() {
+                    // 关闭其他打开的项
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    // 切换当前项状态
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
