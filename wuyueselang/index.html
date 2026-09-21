@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="五月色狼官方网站，提供高清动漫、漫画资源分享，涵盖二次元、游戏、宅文化等内容，致力于为ACG爱好者提供优质的视觉体验与社区交流平台。">
+    <meta name="keywords" content="五月色狼,动漫,漫画,二次元,ACG,高清资源,宅文化">
+    <title>五月色狼-二次元动漫漫画资源与社区分享平台</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #ff5e5e;
+            --secondary-color: #ff8e8e;
+            --bg-dark: #121212;
+            --bg-card: #1e1e1e;
+            --text-main: #ffffff;
+            --text-muted: #b0b0b0;
+            --nav-height: 60px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: var(--nav-height);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header & Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #333;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 6px 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+
+        .search-box input:focus {
+            width: 260px;
+            border-color: var(--primary-color);
+        }
+
+        .search-box button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url('https://picsum.photos/seed/animehero/1920/600') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #ddd;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff4444;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: var(--spacing-sm);
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: black;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-lg);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid #333;
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            border-left: 4px solid var(--primary-color);
+            padding-left: var(--spacing-md);
+        }
+
+        .section-more {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .section-more:hover {
+            color: var(--primary-color);
+        }
+
+        /* Grid Systems */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-md);
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            background-color: #2a2a2a;
+        }
+
+        .card-info {
+            padding: var(--spacing-md);
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tag {
+            background-color: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.75rem;
+        }
+
+        .tag-hot {
+            background-color: rgba(255, 94, 94, 0.2);
+            color: var(--primary-color);
+        }
+
+        /* Ranking List */
+        .ranking-list {
+            counter-reset: rank;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md);
+            border-bottom: 1px solid #2a2a2a;
+            background-color: var(--bg-card);
+            transition: background 0.2s;
+        }
+
+        .ranking-item:hover {
+            background-color: #252525;
+        }
+
+        .rank-num {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: var(--spacing-md);
+            color: var(--text-muted);
+        }
+
+        .ranking-item:nth-child(1) .rank-num { color: #ffd700; }
+        .ranking-item:nth-child(2) .rank-num { color: #c0c0c0; }
+        .ranking-item:nth-child(3) .rank-num { color: #cd7f32; }
+
+        .rank-img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: var(--spacing-md);
+        }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-title {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .rank-stats {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Sidebar */
+        aside {
+            background-color: var(--bg-card);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid #333;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .category-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .category-count {
+            background: #333;
+            padding: 0 6px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0a0a;
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-lg);
+            border-top: 1px solid #333;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .footer-col h4 {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-main);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: var(--spacing-lg);
+            color: #666;
+            font-size: 0.85rem;
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none; /* Simplified for mobile */
+            }
+
+            .hero {
+                height: 300px;
+            }
+
+            .grid-2, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .search-box input {
+                width: 120px;
+            }
+            
+            .search-box input:focus {
+                width: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>五月色狼</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">动漫连载</a></li>
+                <li><a href="#">漫画专区</a></li>
+                <li><a href="#">游戏资讯</a></li>
+                <li><a href="#">资源下载</a></li>
+            </ul>
+        </nav>
+        <div class="search-box">
+            <input type="text" placeholder="搜索作品或标签...">
+            <button>🔍</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>探索无限二次元世界</h1>
+                <p>汇聚最新、最热的动漫、漫画与游戏资讯。五月色狼致力于为每一位热爱ACG文化的用户提供纯净、舒适的浏览体验。</p>
+                <a href="#" class="btn">立即浏览</a>
+                <a href="#" class="btn btn-outline">热门榜单</a>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- Latest Updates Section -->
+            <section class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">最新更新</h2>
+                    <a href="#" class="section-more">查看更多 &gt;</a>
+                </div>
+                
+                <div class="grid-4">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/manga1/300/400" alt="漫画封面" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">奇幻冒险：龙之谷传说</a></h3>
+                            <div class="card-meta">
+                                <span class="tag">漫画</span>
+                                <span>更新至 128 话</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/anime2/300/400" alt="动漫封面" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">都市异能：暗夜行者</a></h3>
+                            <div class="card-meta">
+                                <span class="tag">动漫</span>
+                                <span class="tag tag-hot">连载中</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/game3/300/400" alt="游戏封面" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">二次元手游：星穹战线</a></h3>
+                            <div class="card-meta">
+                                <span class="tag">游戏</span>
+                                <span>新版本上线</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/otaku4/300/400" alt="同人封面" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">同人创作：樱花祭典</a></h3>
+                            <div class="card-meta">
+                                <span class="tag">同人</span>
+                                <span>精选推荐</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Main Content Grid -->
+            <div class="grid-2" style="margin-top: 40px;">
+                <!-- Hot Ranking List -->
+                <section>
+                    <div class="section-header">
+                        <h2 class="section-title">本周热门</h2>
+                    </div>
+                    <div class="ranking-list">
+                        <div class="ranking-item">
+                            <div class="rank-num">1</div>
+                            <img src="https://picsum.photos/seed/rank1/100/150" class="rank-img" alt="封面">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">赛博朋克：边缘行者（重制版）</a>
+                                <div class="rank-stats">热度 98.5w | 讨论区 2.1k</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-num">2</div>
+                            <img src="https://picsum.photos/seed/rank2/100/150" class="rank-img" alt="封面">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">我的英雄学院：最终章</a>
+                                <div class="rank-stats">热度 92.3w | 讨论区 1.8k</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-num">3</div>
+                            <img src="https://picsum.photos/seed/rank3/100/150" class="rank-img" alt="封面">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">鬼灭之刃：无限列车篇</a>
+                                <div class="rank-stats">热度 88.7w | 讨论区 1.5k</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-num">4</div>
+                            <img src="https://picsum.photos/seed/rank4/100/150" class="rank-img" alt="封面">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">咒术回战：涩谷事变</a>
+                                <div class="rank-stats">热度 85.1w | 讨论区 1.2k</div>
+                            </div>
+                        </div>
+                        <div class="ranking-item">
+                            <div class="rank-num">5</div>
+                            <img src="https://picsum.photos/seed/rank5/100/150" class="rank-img" alt="封面">
+                            <div class="rank-info">
+                                <a href="#" class="rank-title">间谍过家家：特别篇</a>
+                                <div class="rank-stats">热度 82.4w | 讨论区 1.0k</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Sidebar Categories -->
+                <aside>
+                    <h3 class="sidebar-title">内容分类</h3>
+                    <ul class="category-list">
+                        <li><a href="#">日本动漫 <span class="category-count">120</span></a></li>
+                        <li><a href="#">国产动画 <span class="category-count">85</span></a></li>
+                        <li><a href="#">日式漫画 <span class="category-count">340</span></a></li>
+                        <li><a href="#">韩漫同人 <span class="category-count">56</span></a></li>
+                        <li><a href="#">轻小说 <span class="category-count">200</span></a></li>
+                        <li><a href="#">游戏攻略 <span class="category-count">90</span></a></li>
+                        <li><a href="#">周边资讯 <span class="category-count">45</span></a></li>
+                    </ul>
+
+                    <h3 class="sidebar-title" style="margin-top: 24px;">标签云</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <a href="#" class="tag">热血</a>
+                        <a href="#" class="tag">恋爱</a>
+                        <a href="#" class="tag">悬疑</a>
+                        <a href="#" class="tag">科幻</a>
+                        <a href="#" class="tag">治愈</a>
+                        <a href="#" class="tag">机甲</a>
+                        <a href="#" class="tag">异世界</a>
+                        <a href="#" class="tag">后宫</a>
+                        <a href="#" class="tag">日常</a>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Recommended Section -->
+            <section style="margin-top: 40px;">
+                <div class="section-header">
+                    <h2 class="section-title">编辑精选</h2>
+                    <a href="#" class="section-more">查看更多 &gt;</a>
+                </div>
+                <div class="grid-4">
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/feature1/300/400" alt="编辑推荐" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">深度解析：2024年春季番剧走势</a></h3>
+                            <div class="card-meta">
+                                <span>资讯</span>
+                                <span>5分钟阅读</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/feature2/300/400" alt="编辑推荐" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">新番推荐：那些不容错过的黑马</a></h3>
+                            <div class="card-meta">
+                                <span>推荐</span>
+                                <span>3分钟阅读</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/feature3/300/400" alt="编辑推荐" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">漫展指南：五月上海国际动漫展</a></h3>
+                            <div class="card-meta">
+                                <span>活动</span>
+                                <span>即将开始</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="https://picsum.photos/seed/feature4/300/400" alt="编辑推荐" class="card-image">
+                        <div class="card-info">
+                            <h3 class="card-title"><a href="#">经典回顾：宫崎骏作品赏析</a></h3>
+                            <div class="card-meta">
+                                <span>回顾</span>
+                                <span>10分钟阅读</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 16px;">
+                    <span>五月色狼</span>
+                </div>
+                <p style="color: #888; font-size: 0.9rem;">
+                    专注于二次元文化与ACG资源的分享平台。我们致力于构建一个纯净、友好的社区环境，让每一位热爱动漫的朋友都能找到属于自己的乐趣。
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>快速链接</h4>
+                <ul>
+                    <li><a href="#">关于我们</a></li>
+                    <li><a href="#">投稿指南</a></li>
+                    <li><a href="#">版权声明</a></li>
+                    <li><a href="#">联系方式</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>热门分类</h4>
+                <ul>
+                    <li><a href="#">热血战斗</a></li>
+                    <li><a href="#">校园恋爱</a></li>
+                    <li><a href="#">科幻机甲</a></li>
+                    <li><a href="#">悬疑推理</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>关注我们</h4>
+                <ul>
+                    <li><a href="#">微博动态</a></li>
+                    <li><a href="#">微信公众号</a></li>
+                    <li><a href="#">Bilibili账号</a></li>
+                    <li><a href="#">加入社群</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023-2024 五月色狼. All Rights Reserved. 本站内容仅供学习交流，请勿用于商业用途。</p>
+        </div>
+    </footer>
+
+</body>
+                                                     </html>
