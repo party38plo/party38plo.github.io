@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区医疗-基层医疗服务与家庭健康管理平台</title>
+    <meta name="description" content="社区医疗服务平台，提供家庭医生签约、慢性病管理、在线问诊、疫苗预约及健康档案查询服务，打造家门口的智慧医疗站。">
+    <meta name="keywords" content="社区医疗,家庭医生,在线问诊,慢病管理,社区卫生服务中心">
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark: #0056b3;
+            --secondary-color: #28a745;
+            --text-main: #333333;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--text-main);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 0 20px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Services Grid */
+        .services {
+            padding: 60px 20px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 30px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Why Choose Us */
+        .features {
+            background-color: var(--bg-white);
+            padding: 60px 20px;
+        }
+
+        .feature-layout {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-image {
+            flex: 1;
+            background: #f0f4f8;
+            height: 400px;
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 60px;
+        }
+
+        .feature-text {
+            flex: 1;
+        }
+
+        .feature-list {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .feature-item h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .check-icon {
+            color: var(--secondary-color);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        /* News Section */
+        .news {
+            padding: 60px 20px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .news-main h3 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .news-date {
+            background: var(--bg-light);
+            padding: 10px;
+            border-radius: var(--radius);
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .news-date .day {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .news-date .month {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .news-content h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .news-content h4:hover {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .news-content p {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .sidebar-list li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar-list a {
+            font-size: 14px;
+            color: var(--text-main);
+            display: block;
+        }
+
+        .sidebar-list a:hover {
+            color: var(--primary-color);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--bg-white);
+            padding: 60px 20px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #fafafa;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            background: #f0f0f0;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .footer-col p {
+            font-size: 14px;
+            color: #bdc3c7;
+            line-height: 1.8;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            font-size: 14px;
+            color: #bdc3c7;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info li {
+            font-size: 14px;
+            color: #bdc3c7;
+            margin-bottom: 10px;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            text-align: center;
+            font-size: 13px;
+            color: #95a5a6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-layout {
+                flex-direction: column;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-container">
+        <a href="#" class="logo">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+            <span>邻医通</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#services">服务项目</a></li>
+                <li><a href="#news">健康资讯</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button class="btn btn-outline">登录</button>
+            <button class="btn btn-primary">注册</button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>家门口的社区医疗，守护全家健康</h1>
+            <p>连接家庭医生与社区居民，提供便捷的预约挂号、在线问诊、慢病管理及健康档案服务。</p>
+            <div class="search-box">
+                <input type="text" placeholder="搜索医生、科室或服务项目...">
+                <button>搜索</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>核心医疗服务</h2>
+                <p>全方位覆盖常见病诊疗与健康管理需求</p>
+            </div>
+            <div class="grid-4">
+                <div class="service-card">
+                    <div class="icon-box">🩺</div>
+                    <h3>家庭医生签约</h3>
+                    <p>建立专属健康档案，提供长期随访与个性化健康指导。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">💊</div>
+                    <h3>慢病管理</h3>
+                    <p>高血压、糖尿病等慢性病患者的定期监测与用药管理。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">💻</div>
+                    <h3>在线问诊</h3>
+                    <p>足不出户，通过图文/视频与社区医生实时沟通病情。</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon-box">💉</div>
+                    <h3>疫苗预约</h3>
+                    <p>儿童免疫规划疫苗与成人HPV、流感疫苗在线预约接种。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="features">
+        <div class="feature-layout">
+            <div class="feature-text">
+                <h2>为什么选择社区医疗？</h2>
+                <p style="color: #666; margin-bottom: 20px;">社区医疗机构作为分级诊疗的基础，承担着居民健康的“守门人”职责。我们致力于通过数字化手段，让医疗服务更可及、更高效。</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="check-icon">✔</span>
+                        <div>
+                            <h4>就近就医，节省时间</h4>
+                            <p>社区医院距离近，看病无需长途奔波，特别适合老年人、儿童及行动不便者。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="check-icon">✔</span>
+                        <div>
+                            <h4>医保覆盖，费用更低</h4>
+                            <p>社区门诊报销比例通常高于大医院，且常用药品价格更实惠。</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <span class="check-icon">✔</span>
+                        <div>
+                            <h4>连续服务，管理精细</h4>
+                            <p>家庭医生团队对您的健康状况有长期跟踪，提供连续性的医疗照护。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feature-image">
+                <span>🏥</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="news">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>健康资讯与社区动态</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-main">
+                    <h3>最新公告</h3>
+                    <div class="news-item">
+                        <div class="news-date">
+                            <span class="day">15</span>
+                            <span class="month">10月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>关于开展秋季流感疫苗接种的通知</h4>
+                            <p>为有效防控流感疫情，我中心将于下月起开展流感疫苗接种工作，详情请咨询现场工作人员...</p>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">
+                            <span class="day">12</span>
+                            <span class="month">10月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>家庭医生签约服务优惠政策解读</h4>
+                            <p>即日起，签约家庭医生服务的居民可享受免挂号费、优先就诊及免费健康体检等权益...</p>
+                        </div>
+                    </div>
+                    <div class="news-item">
+                        <div class="news-date">
+                            <span class="day">08</span>
+                            <span class="month">10月</span>
+                        </div>
+                        <div class="news-content">
+                            <h4>社区义诊活动预告：关注心脑血管健康</h4>
+                            <p>本周六上午9点，特邀市中心医院专家团队莅临我社区开展免费血压血糖检测及咨询...</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="sidebar">
+                    <h3>热门专题</h3>
+                    <ul class="sidebar-list">
+                        <li><a href="#">老年人冬季养生指南</a></li>
+                        <li><a href="#">儿童流感预防知识</a></li>
+                        <li><a href="#">高血压患者的饮食禁忌</a></li>
+                        <li><a href="#">家庭急救常识大全</a></li>
+                        <li><a href="#">糖尿病饮食食谱推荐</a></li>
+                        <li><a href="#">社区医保报销最新政策</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="section-container">
+            <div class="section-title">
+                <h2>常见问题解答</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">社区医院和大医院有什么区别？</div>
+                    <div class="faq-answer">社区医院主要承担常见病、多发病的诊疗和慢性病管理，适合一般健康体检、复诊及康复治疗。对于疑难重症，社区医院会协助转诊至上级医院。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">如何申请家庭医生签约服务？</div>
+                    <div class="faq-answer">您可以前往社区卫生服务中心的签约服务台，携带身份证或医保卡，由全科医生进行评估后即可签约。也可通过本平台的“签约服务”入口在线申请。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">在线问诊需要收费吗？</div>
+                    <div class="faq-answer">本平台提供的部分基础健康咨询为免费服务。如需专科医生进行详细问诊或开具电子处方，将根据服务内容收取相应费用，具体以页面展示为准。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">医保卡可以在社区医院使用吗？</div>
+                    <div class="faq-answer">可以。社区医院是医保定点机构，在社区门诊就医、购药均可使用医保个人账户余额或进行医保报销。</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer id="contact">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>邻医通 - 您的社区健康管家</h4>
+            <p>我们致力于利用互联网+医疗健康服务模式，提升基层医疗服务能力，让每一位居民都能享受到便捷、优质、连续的健康管理服务。</p>
+        </div>
+        <div class="footer-col">
+            <h4>快速导航</h4>
+            <ul class="footer-links">
+                <li><a href="#">预约挂号</a></li>
+                <li><a href="#">家庭医生</a></li>
+                <li><a href="#">健康档案</a></li>
+                <li><a href="#">政策法规</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>服务支持</h4>
+            <ul class="footer-links">
+                <li><a href="#">帮助中心</a></li>
+                <li><a href="#">在线客服</a></li>
+                <li><a href="#">意见反馈</a></li>
+                <li><a href="#">隐私条款</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>联系我们</h4>
+            <ul class="contact-info">
+                <li>服务热线：010-12345678</li>
+                <li>工作时间：周一至周日 8:00-20:00</li>
+                <li>电子邮箱：service@linyitong.com</li>
+                <li>地址：XX市XX区XX街道社区卫生服务中心</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 邻医通社区医疗服务平台 版权所有 | 本平台信息仅供参考，不构成诊疗建议</p>
+    </div>
+</footer>
+
+<script>
+    // FAQ Toggle Logic
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    });
+</script>
+
+</body>
+  </html>
